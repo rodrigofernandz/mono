@@ -1,4 +1,4 @@
-# this is a basic example  of a workflow to deploy services on kubernetes
+# this is a basic example  of a workflow to deploy services regardless the infra (k8s/ecs/...)
 # it is not meant to be used in production
 
 name: Deploy Services
@@ -9,6 +9,10 @@ on:
       service:
         description: 'Service to deploy'
         required: true
+      project:
+        description: 'Project to deploy'
+        required: true
+        type: string
 
 jobs:
   deploy:
@@ -19,11 +23,5 @@ jobs:
         working-directory: services/${{ inputs.service }}
     steps:
       - uses: actions/checkout@v2
-      - name: build and push docker image
-        run: |
-          make build
-          make push
       - name: deploy
-        run: make deploy 
-
-       
+        run: make deploy PROJ=${{ inputs.project }}

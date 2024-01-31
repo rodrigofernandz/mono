@@ -1,16 +1,25 @@
 ENV ?= dev
 
-SERVICE=primerB
+SERVICE=primerA
+
+
+.PHONY test:
+test:
+	@echo "Testing primerA"
+
+.PHONY run:
+run:
+	@echo "Running primerA"
 
 .PHONY build:
 build:
-	@echo "Building primerB"
+	@echo "Building primerA"
 
 .PHONY push:
 push:
-	@echo "Pushing primerB"
+	@echo "Pushing primerA"
 
 .PHONY deploy:
-deploy:
-	@echo "Deploying primerB"
+deploy: test build push
+	@echo "Deploying primerA"
 	helm upgrade --install $(SERVICE) ./helm --namespace $(SERVICE) --create-namespace -f ./helm/$(ENV).yaml

@@ -4,8 +4,6 @@
 
 Each service should have it's own Makefile with the specified targets:
 - test
-- build
-- push
 - deploy
 - run 
 
