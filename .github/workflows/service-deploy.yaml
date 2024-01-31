@@ -24,4 +24,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: deploy
-        run: make deploy PROJ=${{ inputs.project }}
+        run: make deploy ENV=${{ inputs.project }}
